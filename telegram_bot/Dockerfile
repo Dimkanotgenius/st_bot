@@ -25,6 +25,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 #RUN python3 -m pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 -f https://download.pytorch.org/whl/torch_stable.html
 
 COPY requirements.txt .
+COPY app.py . 
+
 RUN pip install -r requirements.txt
 
 
@@ -37,6 +39,6 @@ ARG PW=user
 
 RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PW}" | chpasswd && adduser ${USER} sudo
 
-WORKDIR /home/${USER}
+# WORKDIR /home/${USER}
 RUN mkdir -p beit && mkdir Datasets && chown -R ${UID}:${GID} /home/${USER}
 USER ${UID}:${GID}

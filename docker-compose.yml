@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  telegram-bot:
+    build: ./telegram_bot
+    command: python3 app.py
+    runtime: nvidia
+
+    # networks:
+    #   - diffusion-bot-network
+
+
+
+
